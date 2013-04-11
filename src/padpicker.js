@@ -6,7 +6,11 @@ $(function(){
        hash = createGuid();
        window.location.hash = hash;
    }
-   var pad = padpicker.create('firepad', hash);
+   var pad = padpicker.create({
+	editor_id: 'firepad',
+	userlist_id: 'userlist',
+	firebase_id: hash
+	});
 
    $(document).on("file-picked", function(e, fpfile){
 	pad.setFile(fpfile);
@@ -38,19 +42,26 @@ var createGuid = function(){
 
 var padpicker = {};
 padpicker.interval = 1000 * 5;
-padpicker.create = function(id, firebase_id){
-   return new padpicker.PadPicker(id, firebase_id);
+padpicker.create = function(options) {
+   options.userId = Math.floor(Math.random() * 9999999999).toString();
+   return new padpicker.PadPicker(options);
 };
 
-padpicker.PadPicker = function(dom_id, firebase_id) {
-   if (!dom_id || !firebase_id) {
+padpicker.PadPicker = function(options) {
+   if (!options || !options.editor_id || !options.firebase_id) {
         debugger;
    }
-   this.firebase = new Firebase("padpicker.firebaseIO.com").child(firebase_id);
+   this.firebase = new Firebase("padpicker.firebaseIO.com").child(options.firebase_id);
+   this.userId = options.userId;
 
-   this.codeMirror = CodeMirror(document.getElementById(dom_id), { lineWrapping: true });
+   this.codeMirror = CodeMirror(document.getElementById(options.editor_id), { lineWrapping: true });
    this.firepad = Firepad.fromCodeMirror(this.firebase, this.codeMirror,
-          { richTextShortcuts: true, richTextToolbar: true });
+          { richTextShortcuts: true, richTextToolbar: true, userId: this.userId });
+
+   // Setup the user list with the given userId.
+    this.firepadUserList = FirepadUserList.fromDiv(this.firebase.child('users'),
+        document.getElementById(options.userlist_id), this.userId);
+
    this.firepad.on('ready', function(){
 	//handle making sure we don't call set file until ready
    });
