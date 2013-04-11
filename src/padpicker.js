@@ -55,6 +55,7 @@ padpicker.PadPicker = function(options) {
    this.userId = options.userId;
 
    this.codeMirror = CodeMirror(document.getElementById(options.editor_id), { lineWrapping: true });
+   Firepad.prototype.addPoweredByLogo_ = function(){};
    this.firepad = Firepad.fromCodeMirror(this.firebase, this.codeMirror,
           { richTextShortcuts: true, richTextToolbar: true, userId: this.userId });
 
@@ -70,6 +71,32 @@ padpicker.PadPicker = function(options) {
    this.firebase.child("file").on("value", function(snapshot){
 	curr.file = snapshot.val();
    });
+
+   this.createToolbar($("#" + options.editor_id));
+};
+
+padpicker.PadPicker.prototype.createToolbar = function(editor) {
+   var curr = this;
+   var open_btn = $("<a>").text("Open").addClass("firepad-btn").addClass("firepad-btn-open").on("click", function(){
+        filepicker.pick({
+	    mimetype: "text/*",
+        }, function(fpfile) {
+	    curr.setFile(fpfile);
+        });
+   });
+   var saveas_btn = $("<a>").text("Save As").addClass("firepad-btn").addClass("firepad-btn-saveas").on("click", function(){
+	var text = curr.firepad.getText();
+	filepicker.store(text, function(fpfile){
+            filepicker.export(fpfile, {
+		mimetype: curr.file.mimetype,
+                suggestedFilename: curr.file.filename
+            });
+        }, function(fpfile) {
+	    curr.setFile(fpfile);
+        });
+   });
+   var group = $('<div>').addClass('firepad-btn-group').append(open_btn).append(saveas_btn);
+   editor.find(".firepad-toolbar").prepend(group);
 };
 
 padpicker.PadPicker.prototype.reload = function(firebase_id) {
