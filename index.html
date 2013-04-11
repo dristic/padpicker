@@ -11,18 +11,46 @@
     <link href="lib/codemirror.css" type="text/css" rel="stylesheet" />
 
     <style type="text/css">
-      body {
-        padding-top: 20px;
-        padding-bottom: 40px;
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .inline {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .brand {
+        display: inline-block;
+        margin-left: 5px;
+        margin-top: -10px;
       }
 
       /* Custom container */
       .container-narrow {
-        margin: 0 auto;
-        max-width: 700px;
+        margin: 0;
+        width: 80%;
+        float: right;
+        display: box;
+        height: 100%;
+        position: relative;
       }
       .container-narrow > hr {
-        margin: 30px 0;
+        margin: 10px 0;
+      }
+
+      .masthead {
+        padding: 0 30px;
+        position: absolute;
+        bottom: 0;
+        display: block;
+        width: 500px;
       }
 
       /* Main marketing message and sign up button */
@@ -41,32 +69,36 @@
 
       /* Supporting marketing content */
       .marketing {
-        margin: 60px 0;
+        margin: 30px 0;
       }
       .marketing p + h4 {
         margin-top: 28px;
       }
 
-      #firepad {
-        border: 1px solid #AAA;
-        box-shadow: #000 2px 2px 8px -2px;
-        position: relative;
+      #editor {
+        display: block;
+        min-height: 100%;
       }
-    </style>
 
-    <style>
-      .firepad-userlist {
-        position: fixed; left: 0; top: 0; bottom: 0; height: auto;
-        width: 220px;
+      #userlist {
+        display: block;
+        height: 100%;
+        float: left;
+        width: 20%;
         background: url(img/grey_wash_wall.png) gray;
         color: white;
         padding: 15px;
         box-shadow: #000 -5px 0px 10px -3px inset;
       }
-      /*.firepad {
-        position: absolute; left: 175px; top: 0; bottom: 0; right: 0; height: auto;
-      }*/
-  </style>
+
+      .firepad-userlist {
+        /*position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;*/
+        
+      }
+    </style>
 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -92,36 +124,22 @@
       </div>
     </div>
 
+    <div id="userlist"></div>
+
     <div class="container-narrow">
+      <div id="editor">
+        <div id="firepad"></div>
+      </div>
 
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           
         </ul>
-        <h3 class="muted">PadPicker</h3>
-      </div>
-
-      <!--<hr>
-
-      <div class="jumbotron">
-        <h1>PadPicker</h1>
-        <p class="lead">Filepicker.io integration with FirePad.</p>
-        <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-      </div>-->
-
-      <hr>
-
-      <div class="row-fluid marketing">
-        <div class="span12">
-          <div id="userlist"></div>
-          <div id="firepad"></div>
+        
+        <div class="footer">
+          <h3 class="muted inline">PadPicker</h3>
+          <span>Brought to you by <a href="http://filepicker.io" class="brand"><img src="https://drpyjw32lhcoa.cloudfront.net/31a6769/img/portal/logo.png" alt="filepicker.io"></a></span>
         </div>
-      </div>
-
-      <hr>
-
-      <div class="footer">
-        <p>Brought to you by <a href="http://filepicker.io">Filepicker.io</a></p>
       </div>
 
     </div> <!-- /container -->
