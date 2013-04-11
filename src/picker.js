@@ -1,8 +1,7 @@
 function pick(success, failure) {
   filepicker.pick({
-      mimetypes: ['text/plain'],
-      container: 'window',
-      services:['COMPUTER', 'GMAIL', 'BOX', 'DROPBOX', 'GITHUB'],
+      mimetypes: ['text/*'],
+      //services:['COMPUTER', 'GMAIL', 'BOX', 'DROPBOX', 'GITHUB'],
     },
     function(FPFile){
       console.log(JSON.stringify(FPFile));
