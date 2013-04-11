@@ -122,6 +122,7 @@ padpicker.PadPicker.prototype.setFile = function(fpfile) {
    filepicker.read(fpfile, {asText: true}, function(data){
        curr.last = data;
        curr.firepad.setText(data);
+       curr.codeMirror.scrollTo(0,0);
    });
 };
 
