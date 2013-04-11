@@ -45,6 +45,11 @@
       .marketing p + h4 {
         margin-top: 28px;
       }
+
+      #firepad {
+        border: 1px solid #AAA;
+        box-shadow: #000 2px 2px 8px -2px;
+      }
     </style>
 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -55,63 +60,55 @@
     <script type="text/javascript" src="lib/firepad.js"></script>
   </head>
   <body>
+    <!-- Modal -->
+    <div id="get-started-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Get Started!</h3>
+      </div>
+      <div class="modal-body">
+        <p>This is a demo of filepicker.io integrated with the firepad editor. To get started open a file using the button below and start editing. Then copy the url and give it to your friends so they can help out too!</p>
+        <p id="pick-error" style="color:red;">Sorry, there was an error choosing a file.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-success" id="choose-a-file-btn">Choose a File</button>
+      </div>
+    </div>
+
     <div class="container-narrow">
 
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          
         </ul>
-        <h3 class="muted">Project name</h3>
+        <h3 class="muted">PadPicker</h3>
       </div>
 
-      <hr>
+      <!--<hr>
 
       <div class="jumbotron">
         <h1>PadPicker</h1>
         <p class="lead">Filepicker.io integration with FirePad.</p>
-        <p id="pick-error" style="color:red;">Sorry, there was an error choosing a file.</p>
-        <a class="btn btn-large btn-success" href="#" id="choose-a-file-btn">Choose a File</a>
-      </div>
+        <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+      </div>-->
 
       <hr>
 
       <div class="row-fluid marketing">
-        <div class="span6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+        <div class="span12">
+          <div id="firepad">
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-        <div class="span6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          </div>
         </div>
       </div>
 
       <hr>
 
       <div class="footer">
-        <p>&copy; Company 2013</p>
+        <p>Brought to you by <a href="http://filepicker.io">Filepicker.io</a></p>
       </div>
 
     </div> <!-- /container -->
-
-    <div id="firepad">
-
-    </div>
 
     <script type="text/javascript">
       $(document).ready(function () {

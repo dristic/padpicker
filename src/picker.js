@@ -17,6 +17,7 @@ function pick(success, failure) {
 $(document).ready(function () {
   var chooseAFileButton = $('#choose-a-file-btn');
   var pickError = $('#pick-error');
+  var modal = $('#get-started-modal');
 
   pickError.hide();
 
@@ -29,6 +30,12 @@ $(document).ready(function () {
   });
 
   $(document).on('file-picked', function (data, file) {
-    console.log(data, file);
+    modal.modal('hide');
   });
+
+  $(document).on('show-welcome', function () {
+    modal.modal('show');
+  });
+
+  $(document).trigger('show-welcome');
 });
