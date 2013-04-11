@@ -8,15 +8,103 @@
     <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
     <link href="lib/firepad.css" type="text/css" rel="stylesheet" />
 
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+    </style>
+
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="http://api.filepicker.io/v1/filepicker.js"></script>
     <script type="text/javascript" src="lib/firepad.js"></script>
   </head>
   <body>
-    <div id="popup">
-      <h3>Welcome</h3>
-    </div>
+    <div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <h3 class="muted">Project name</h3>
+      </div>
+
+      <hr>
+
+      <div class="jumbotron">
+        <h1>PadPicker</h1>
+        <p class="lead">Filepicker.io integration with FirePad.</p>
+        <p id="pick-error" style="color:red;">Sorry, there was an error choosing a file.</p>
+        <a class="btn btn-large btn-success" href="#" id="choose-a-file-btn">Choose a File</a>
+      </div>
+
+      <hr>
+
+      <div class="row-fluid marketing">
+        <div class="span6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="span6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>&copy; Company 2013</p>
+      </div>
+
+    </div> <!-- /container -->
 
     <div id="firepad">
 
@@ -27,5 +115,6 @@
         filepicker.setKey('AuLajMswVSlSwOXrzgP2fz');
       });
     </script>
+    <script type="text/javascript" src="src/picker.js"></script>
   </body>
 </html>
