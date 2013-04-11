@@ -14,6 +14,8 @@ padpicker.create = function(id){
 
 padpicker.PadPicker = function(id) {
    this.firebase = new Firebase("padpicker.firebaseIO.com");
+   var fbid = window.location.hash.replace("#","");
+   this.firebase = this.firebase.child(fbid);
 
    this.codeMirror = CodeMirror(document.getElementById(id), { lineWrapping: true });
    this.firepad = Firepad.fromCodeMirror(this.firebase, this.codeMirror,
@@ -47,6 +49,7 @@ padpicker.PadPicker.prototype.listenForChange = function(){
 padpicker.PadPicker.prototype.check = function(){
    if (!this.file) { console.log("no file"); return; } 
    var curr = this.firepad.getText();
+   //TODO - add check for reading from file, determining conflicts?
    if (this.last != curr) {
 	if (this.last) { 
 		filepicker.write(this.file, curr);
