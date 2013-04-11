@@ -37,5 +37,5 @@ $(document).ready(function () {
     modal.modal('show');
   });
 
-  $(document).trigger('show-welcome');
+  //$(document).trigger('show-welcome');
 });

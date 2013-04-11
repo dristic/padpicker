@@ -1,5 +1,5 @@
 $(function(){
-   var pad = padpicker.create('firepad');
+   var pad = padpicker.create('firepad', 'userlist');
 
    $(document).on("file-picked", function(e, fpfile){
 	pad.setFile(fpfile);
@@ -8,18 +8,25 @@ $(function(){
 
 var padpicker = {};
 padpicker.interval = 1000 * 5;
-padpicker.create = function(id){
-   return new padpicker.PadPicker(id);
+padpicker.create = function(id, userListId){
+  var userId = Math.floor(Math.random() * 9999999999).toString();
+   return new padpicker.PadPicker(id, userListId, userId);
 };
 
-padpicker.PadPicker = function(id) {
+padpicker.PadPicker = function(id, userListId, userId) {
+  this.userId = userId;
    this.firebase = new Firebase("padpicker.firebaseIO.com");
    var fbid = window.location.hash.replace("#","");
    this.firebase = this.firebase.child(fbid);
 
    this.codeMirror = CodeMirror(document.getElementById(id), { lineWrapping: true });
    this.firepad = Firepad.fromCodeMirror(this.firebase, this.codeMirror,
-          { richTextShortcuts: true, richTextToolbar: true });
+          { richTextShortcuts: true, richTextToolbar: true, userId: this.userId });
+
+   // Setup the user list with the given userId.
+    this.firepadUserList = FirepadUserList.fromDiv(this.firebase.child('users'),
+        document.getElementById(userListId), this.userId);
+
    this.firepad.on('ready', function(){
 	//handle making sure we don't call set file until ready
    });

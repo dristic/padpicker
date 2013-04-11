@@ -49,8 +49,23 @@
       #firepad {
         border: 1px solid #AAA;
         box-shadow: #000 2px 2px 8px -2px;
+        position: relative;
       }
     </style>
+
+    <style>
+      .firepad-userlist {
+        position: fixed; left: 0; top: 0; bottom: 0; height: auto;
+        width: 220px;
+        background: url(img/grey_wash_wall.png) gray;
+        color: white;
+        padding: 15px;
+        box-shadow: #000 -5px 0px 10px -3px inset;
+      }
+      .firepad {
+        position: absolute; left: 175px; top: 0; bottom: 0; right: 0; height: auto;
+      }
+  </style>
 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -58,6 +73,7 @@
     <script type="text/javascript" src="http://api.filepicker.io/v1/filepicker.js"></script>
     <script type="text/javascript" src="lib/codemirror.js"></script>
     <script type="text/javascript" src="lib/firepad.js"></script>
+    <script type="text/javascript" src="lib/firepad-userlist.js"></script>
   </head>
   <body>
     <!-- Modal -->
@@ -96,9 +112,8 @@
 
       <div class="row-fluid marketing">
         <div class="span12">
-          <div id="firepad">
-
-          </div>
+          <div id="userlist"></div>
+          <div id="firepad"></div>
         </div>
       </div>
 
